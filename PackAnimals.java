@@ -1,29 +1,27 @@
-// Dogs, Cats, Hamsters
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class Pets {
-    private Map<Integer, String> pets = new HashMap<>();
+public class PackAnimals {
+    private Map<Integer, String> packAnimals = new HashMap<>();
     private Integer id;
     private String description;
     private Integer animalId;
     private String animalDescription;
-    private static final String petType = "Pets";
+    private static final String petType = "PackAnimals";
 
-    public Pets() {
+    public PackAnimals() {
 
-        pets.put(1, "Dogs");
-        pets.put(2, "Cats");
-        pets.put(3, "Hamsters");
+        packAnimals.put(1, "Horses");
+        packAnimals.put(2, "Camels");
+        packAnimals.put(3, "Donkeys");
     }
 
 // *** *** ***
 
-public String printPetTypes(){
+public String printPackAnimalTypes(){
     StringBuilder sb = new StringBuilder();
-    sb.append("Pets: \n");
-        for (Map.Entry<Integer, String> entry : pets.entrySet()) {
+    sb.append("Pack animals: \n");
+        for (Map.Entry<Integer, String> entry : packAnimals.entrySet()) {
             Animals animals = new Animals(petType);
             sb.append("id: ").append(entry.getKey()).append(", description: ").append(entry.getValue()).append(", ")
             .append("animalId: ").append(animals.getID(petType)).append(", description: ").append(animals.getDescription()).append("\n");
@@ -31,31 +29,31 @@ public String printPetTypes(){
     return sb.toString();
 }
 
-public String printPetsByID(Integer id) {
+public String printPackAnimalsByID(Integer id) {
     StringBuilder sb = new StringBuilder();
-    sb.append("Pets: \n");
+    sb.append("Pack animals: \n");
         
     Animals animals = new Animals(petType);
 
-    sb.append("id: ").append(id).append(", description: ").append(pets.get(id)).append(", ")
+    sb.append("id: ").append(id).append(", description: ").append(packAnimals.get(id)).append(", ")
     .append("animalId: ").append(animals.getID(petType)).append(", description: ").append(animals.getDescription()).append("\n");
         
     return sb.toString();
 }
 
-public void addNewPetType(String description) {
+public void addNewPackAnimalType(String description) {
     int maxKey = -1;
-    for(int key: pets.keySet()) {
+    for(int key: packAnimals.keySet()) {
         if (key > maxKey) {
             maxKey = key;
         }
     }
-    pets.put(maxKey + 1, description);
+    packAnimals.put(maxKey + 1, description);
 }
 
-public void removePetType(String description) {
+public void removePackAnimalType(String description) {
     Integer keyToRemove = null;
-    for(Map.Entry<Integer, String> entry : pets.entrySet()) {
+    for(Map.Entry<Integer, String> entry : packAnimals.entrySet()) {
         if(entry.getValue().equals(description)) {
             keyToRemove = entry.getKey();
             break;
@@ -63,15 +61,15 @@ public void removePetType(String description) {
     }
 
     if(keyToRemove == null) {
-        throw new IllegalArgumentException("There is no specified pet type");
+        throw new IllegalArgumentException("There is no specified pack animal type");
     } else {
-        pets.remove(keyToRemove);
+        packAnimals.remove(keyToRemove);
     }
 }
 
 public Integer getID(String description) {
     int id = -1;
-    for(Map.Entry<Integer, String> entry : pets.entrySet()) {
+    for(Map.Entry<Integer, String> entry : packAnimals.entrySet()) {
         if(entry.getValue().equals(description)) {
             id = entry.getKey();
             break;
