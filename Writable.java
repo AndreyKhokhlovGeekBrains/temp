@@ -1,6 +1,6 @@
 
 
 public interface Writable {
-    boolean save(HumanFriends humanFriends);
+    boolean save(HumanFriends registry);
     Object read();
 }

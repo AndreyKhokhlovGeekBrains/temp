@@ -77,4 +77,17 @@ public Integer getID(String description) {
     }
     return id;
 }
+
+public String getDescriptionByID(Integer id) {
+    return packAnimals.get(id);
+}
+
+public Map<Integer, String> getPackAnimalsList() {
+    return packAnimals;
+}
+
+public String getPetType () {
+    return petType;
+}
+
 }

@@ -5,11 +5,23 @@ import java.util.List;
 public class HumanFriendsMember implements HumanFriendsItem {
     private Integer id;
     private Integer animalTypeId;
+    String animalTypeDescription;
+    Integer animalID;
+    String animalDescription;
     private String name;
     private LocalDate birthdate;
     private List<String> commands;
 
-public HumanFriendsMember(Integer id, Integer animalTypeId, String name, LocalDate birthdate, List<String> commands) {
+public HumanFriendsMember(
+    Integer id, 
+    Integer animalTypeId, 
+    String animalTypeDescription, 
+    Integer animalID, 
+    String animalDescription, 
+    String name, 
+    LocalDate birthdate, 
+    List<String> commands
+    ) {
     this.id = id;
     this.animalTypeId = animalTypeId;
     this.name = name;
@@ -36,17 +48,8 @@ public void addNewCommand(String command) {
     commands.add(command);
 };
 
-public void deleteCommand(){
-    
-};
-
-public void printItemsByDate(){
-
-};
-
-public String printItemsByAnimalType(){
-
-    return "";
+public void deleteCommand(Integer itemNum){
+    commands.remove(itemNum);
 };
 
 public String getName(){
@@ -69,4 +72,51 @@ public Integer getId() {
 public Integer getAnimalTypeID(){
     return animalTypeId;
 }
+
+@Override
+public String toString() {
+    return getInfo();
+}
+
+public String getInfo () {
+    StringBuilder sb = new StringBuilder();
+    sb.append(id)
+            .append(", ")
+            .append(animalTypeId)
+            .append(" ")
+            .append(animalTypeDescription)
+            .append(" ")
+            .append(animalID)
+            .append(", ")
+            .append(animalDescription)
+            .append(", ")
+            .append(name)
+            .append(", ")
+            .append(birthdate)
+            .append(", ")
+            .append(getCommands(commands));
+    return sb.toString();
+}
+
+private String getCommands(List<String> commands) {
+    StringBuilder sb = new StringBuilder();
+    int numOfListItems = commands.size();
+    String result;
+    
+    if(!commands.isEmpty()) {
+        sb.append("{");
+        for (int i = 0; i < numOfListItems; i++) {
+            if(i < numOfListItems - 1) {
+                sb.append(commands.get(i)).append(", ");
+            } else {
+                sb.append(commands.get(i)).append("}");
+            }
+        }
+        result = sb.toString();
+    } else {
+        result = "{}";
+    }
+    return result; 
+}
+
 }

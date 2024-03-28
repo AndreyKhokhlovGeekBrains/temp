@@ -4,9 +4,7 @@ import java.time.Period;
 public interface HumanFriendsItem {
     String printCommandsList();
     void addNewCommand(String command);
-    void deleteCommand();
-    void printItemsByDate();
-    String printItemsByAnimalType();
+    void deleteCommand(Integer itemNum);
 
     String getName();
     Period getAge();

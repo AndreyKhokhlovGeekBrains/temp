@@ -5,7 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class FileHandler implements Writable{
-    private String filePath = "src/homeWork/src/model/writer/tree.txt";
+    private String filePath = "C:\\Users\\a.khokhlov\\Desktop\\Java\\test\\HumanFriends.txt";
     
     public boolean save(HumanFriends tree) {
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {

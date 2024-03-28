@@ -79,4 +79,17 @@ public Integer getID(String description) {
     }
     return id;
 }
+
+public String getDescriptionByID(Integer id) {
+    return pets.get(id);
+}
+
+public Map<Integer, String> getPetsList() {
+    return pets;
+}
+
+public String getPetType () {
+    return petType;
+}
+
 }
