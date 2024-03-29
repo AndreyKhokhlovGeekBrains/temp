@@ -20,26 +20,18 @@ public class Pets {
 
 // *** *** ***
 
-public String printPetTypes(){
+public String printPets(){
     StringBuilder sb = new StringBuilder();
+    Animals animals = new Animals();
+    animalId = animals.getIdByDescription(petType);
+    animalDescription = animals.getDescriptionByID(animalId);
+
     sb.append("Pets: \n");
         for (Map.Entry<Integer, String> entry : pets.entrySet()) {
-            Animals animals = new Animals(petType);
+            
             sb.append("id: ").append(entry.getKey()).append(", description: ").append(entry.getValue()).append(", ")
-            .append("animalId: ").append(animals.getID(petType)).append(", description: ").append(animals.getDescription()).append("\n");
+            .append("animalId: ").append(animalId).append(", description: ").append(animalDescription).append("\n");
         }
-    return sb.toString();
-}
-
-public String printPetsByID(Integer id) {
-    StringBuilder sb = new StringBuilder();
-    sb.append("Pets: \n");
-        
-    Animals animals = new Animals(petType);
-
-    sb.append("id: ").append(id).append(", description: ").append(pets.get(id)).append(", ")
-    .append("animalId: ").append(animals.getID(petType)).append(", description: ").append(animals.getDescription()).append("\n");
-        
     return sb.toString();
 }
 

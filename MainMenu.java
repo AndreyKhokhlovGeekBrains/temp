@@ -30,7 +30,7 @@ public class MainMenu {
         command.execute();
     }
 
-    // public int size(){
-    //     return commandsList.size();
-    // }
+    public int size(){
+        return commandsList.size();
+    }
 }

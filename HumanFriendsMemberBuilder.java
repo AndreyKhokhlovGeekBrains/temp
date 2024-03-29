@@ -30,47 +30,47 @@ public class HumanFriendsMemberBuilder {
         String petType;
         Pets pets = new Pets();
         PackAnimals packAnimals = new PackAnimals();
+        Animals animals = new Animals();
 
         if(checkAnimalTypeDescription(animalTypeDescription)) {
+
             if(pets.getPetsList().containsValue(animalTypeDescription)) {
                 petType = pets.getPetType();
             } else {
                 petType = packAnimals.getPetType();
             }
 
-            Animals animals = new Animals(petType);
-            
-            animalTypeId = getAnimalId(animalTypeDescription);
-            animalId = animals.getID(animalTypeDescription);
-            animalDescription = animals.getDescription();
+            animalTypeId = getAnimalTypeId(animalTypeDescription);
+            animalId = animals.getIdByDescription(petType);
+            animalDescription = animals.getDescriptionByID(animalId);
             
             return new HumanFriendsMember(id++, animalTypeId, animalTypeDescription, animalId, animalDescription, name, birthdate, commands);
         } else {
-            throw new IllegalArgumentException("There is no specified animal type");
-        }
+           throw new IllegalArgumentException("There is no specified animal type");
+       }
     }
 
-    private Integer getAnimalId (String animalTypeDescritpin) {
+    public Integer getAnimalTypeId (String prompt) {
         Pets pets = new Pets();
         PackAnimals packAnimals = new PackAnimals();
-        Integer idValue = pets.getID(animalTypeDescription);
+        Integer idValue = pets.getID(prompt);
 
-        if(!checkAnimalTypeDescription(animalTypeDescritpin)) {
+        if(!checkAnimalTypeDescription(prompt)) {
             throw new IllegalArgumentException("There is no specified animal type");
         }
 
         if(idValue == -1) {
-            idValue = packAnimals.getID(animalTypeDescritpin);
+            idValue = packAnimals.getID(prompt);
         }
 
-        return animalId;
+        return idValue;
     }
 
-    private boolean checkAnimalTypeDescription(String animalTypeDescription) {
+    public boolean checkAnimalTypeDescription(String animalTypeDescription) {
         Pets pets = new Pets();
         PackAnimals packAnimals = new PackAnimals();
         
-        if(pets.getPetsList().containsValue(animalTypeDescription) && packAnimals.getPackAnimalsList().containsValue(animalTypeDescription)) {
+        if(pets.getPetsList().containsValue(animalTypeDescription) || packAnimals.getPackAnimalsList().containsValue(animalTypeDescription)) {
             return true;
         }
         return false;

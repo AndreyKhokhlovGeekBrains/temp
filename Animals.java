@@ -9,20 +9,9 @@ public class Animals {
     private String description;
     private Map<Integer, String> animals = new HashMap<>();
 
-public Animals(Integer animalId) {
+public Animals() {
     animals.put(1, "Pets");
     animals.put(2, "PackAnimals");
-    
-    this.animalId = animalId;
-    this.description = animals.get(animalId);
-}
-
-public Animals(String description) {
-    animals.put(1, "Pets");
-    animals.put(2, "PackAnimals");
-    
-    this.animalId = getID(description);
-    this.description = description;
 }
 
 public String printAnimalTypes(){
@@ -59,10 +48,10 @@ public void removeAnimalType(String description) {
     }   
 }
 
-public Integer getID(String description) {
+public Integer getIdByDescription(String prompt) {
     int id = -1;
     for(Map.Entry<Integer, String> entry: animals.entrySet()) {
-        if(entry.getValue().equals(description)) {
+        if(entry.getValue().equals(prompt)) {
             id = entry.getKey();
             break;
         }
@@ -70,7 +59,8 @@ public Integer getID(String description) {
     return id;
 }
 
-public String getDescription() {
+public String getDescriptionByID(Integer id) {
+    String description = animals.get(id);
     return description;
 }
 

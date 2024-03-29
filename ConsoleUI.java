@@ -30,28 +30,48 @@ public class ConsoleUI implements View {
 
     private void scanMenu() {
         String choiceStr = scanner.nextLine();
-        // Input validity check
-        int choice = Integer.parseInt(choiceStr);
-        menu.execute(choice);
-    }
 
+        boolean check = true;
+        int maxValue = menu.size();
+        while(check){
+            try {
+                int choice = Integer.parseInt(choiceStr);
+                if (choice >= 1 && choice <= maxValue) {
+                    menu.execute(choice);
+                    check = false;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter a valid number");
+            }
+        } 
+    }
 
     public void answer(String answer) {
 
-    };
+    }
 
     public void addHumanFriendsMember() {
         System.out.println("Enter name: ");
         String name = scanner.nextLine();
+        String animalTypeDescription = null;
+        boolean check = true;
 
-        System.out.println("Enter animal type:");
-        String animalTypeDescription = scanner.nextLine();
+        while(check) {
+            System.out.println("Enter animal type:");
+            animalTypeDescription = scanner.nextLine();
+            if (presenter.checkAnimalTypeDescription(animalTypeDescription)) {
+                check = false;
+            } else {
+                System.out.println("Please enter correct animal type description");
+            }
+        }
 
         System.out.println("Enter birth date: ");
         LocalDate birthdate = dateBuilder.buildDate();
 
-        presenter.addHumanFriendsMember(name, animalTypeDescription, birthdate);
-    };
+        presenter.addHumanFriendsMember(animalTypeDescription, name, birthdate);
+        presenter.getHumanFriendsRegistryInfo();
+    }
 
     public void exit() {
         System.out.println("Would you like to save your changes? Y/N");

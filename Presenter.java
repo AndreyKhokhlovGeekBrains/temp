@@ -12,17 +12,20 @@ public class Presenter {
     }
 
     public void addHumanFriendsMember(String animalTypeDescription, String name, LocalDate birthdate) {
-        service.createHumanFriendMember(animalTypeDescription, name, birthdate);
-        getHumanFriendsInfo();
+        service.createHumanFriendsMember(animalTypeDescription, name, birthdate);
     }
 
-    public void getHumanFriendsInfo() {
-        String answer = service.getHumanFriendsInfo();
+    public void getHumanFriendsRegistryInfo() {
+        String answer = service.getHumanFriendsRegistryInfo();
         view.answer(answer);
     }
 
     public void save() {
         service.save();
+    }
+
+    public boolean checkAnimalTypeDescription(String description) {
+        return service.checkAnimalTypeDescription(description);
     }
 
 }

@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HumanFriends<HF extends HumanFriendsItem> {
+public class HumanFriends<HF extends HumanFriendsItem> implements Serializable {
     private List<HF> humanFriends;
 
     public HumanFriends(){

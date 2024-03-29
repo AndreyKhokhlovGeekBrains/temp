@@ -24,6 +24,9 @@ public HumanFriendsMember(
     ) {
     this.id = id;
     this.animalTypeId = animalTypeId;
+    this.animalTypeDescription = animalTypeDescription;
+    this.animalID = animalID;
+    this.animalDescription = animalDescription;
     this.name = name;
     this.birthdate = birthdate;
     this.commands = commands;
