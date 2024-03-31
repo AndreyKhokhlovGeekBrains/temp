@@ -1,8 +1,9 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class HumanFriends<HF extends HumanFriendsItem> implements Serializable {
+public class HumanFriends<HF extends HumanFriendsItem> implements Serializable, Iterable<HF> {
     private List<HF> humanFriends;
 
     public HumanFriends(){
@@ -15,6 +16,10 @@ public class HumanFriends<HF extends HumanFriendsItem> implements Serializable {
 
     public List<HF> getHumanFriends() {
         return humanFriends;
+    }
+
+    public HF getHumanFriendsMemberById (Integer id) {
+        return humanFriends.get(id);
     }
 
     public boolean addHumanFriendsMember(HF member) {
@@ -49,5 +54,18 @@ public class HumanFriends<HF extends HumanFriendsItem> implements Serializable {
     
         return "";
     };
-    
+
+    @Override
+    public Iterator<HF> iterator() {
+        return new HumanFriendsMemberIterator<>(humanFriends);
+    }
+
+    public boolean remove(HF member) {
+        return humanFriends.remove(member);
+    }
+
+    public void sortByBirthdate() {
+        humanFriends.sort(new HumanFriendsCompareByBirthDate<>());
+    }
+
 }

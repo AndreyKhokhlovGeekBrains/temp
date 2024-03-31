@@ -11,9 +11,10 @@ public class DateBuilder {
     private Scanner scanner = new Scanner(System.in);
 
     public LocalDate buildDate(){
+        int currentYear = Year.now().getValue();
         day = getInput("day", 1, 31);
         month = getInput("month", 1, 12);
-        year = getInput("year", 1, 3000);
+        year = getInput("year", 1, currentYear);
 
         return date = LocalDate.parse(year + "-" + String.format("%02d", Integer.parseInt(month)) + "-" + String.format("%02d", Integer.parseInt(day)));
     }

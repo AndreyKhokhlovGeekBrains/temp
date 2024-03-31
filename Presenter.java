@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class Presenter {
@@ -11,8 +12,8 @@ public class Presenter {
         service = new Service();
     }
 
-    public void addHumanFriendsMember(String animalTypeDescription, String name, LocalDate birthdate) {
-        service.createHumanFriendsMember(animalTypeDescription, name, birthdate);
+    public void addHumanFriendsMember(String animalTypeDescription, String name, LocalDate birthdate, List<String> commands) {
+        service.createHumanFriendsMember(animalTypeDescription, name, birthdate, commands);
     }
 
     public void getHumanFriendsRegistryInfo() {
@@ -26,6 +27,42 @@ public class Presenter {
 
     public boolean checkAnimalTypeDescription(String description) {
         return service.checkAnimalTypeDescription(description);
+    }
+
+    public void deleteMember(int animalId) {
+        service.deleteMember(animalId);
+        String answer = service.getHumanFriendsRegistryInfo();
+        view.answer(answer);
+    }
+
+    public void printCommands(int animalId) {
+        String answer = service.printCommands(animalId);
+        view.answer(answer);
+    }
+
+    public void addCommand(int animalId, String command) {
+        String answer = service.addCommand(animalId, command);
+        view.answer(answer);
+    }
+
+    public void delecteCommand(HumanFriendsMember member, int selectedCommandId) {
+        String answer = service.deleteCommand(member, selectedCommandId);
+        view.answer(answer);
+    }
+
+    public HumanFriends<HumanFriendsMember> getHumanFriendsRegistry() {
+        return service.getHumanFriendsregistry();
+    }
+
+    public void sortByBirthdate() {
+        service.sortByBirthdate();
+        String answer = service.getHumanFriendsRegistryInfo();
+        view.answer(answer);
+    }
+
+    public void countByAnimalType(String animalType) {
+        String answer = service.countByAnimalType(animalType);
+        view.answer(answer);
     }
 
 }

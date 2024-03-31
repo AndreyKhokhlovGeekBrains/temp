@@ -6,16 +6,20 @@ public class MainMenu {
 
     public MainMenu(View view) {
         commandsList = new ArrayList<>();
-        commandsList.add(new addHumanFriendsMember(view));
-        // commandList.add(new SortByBirthdate(view));
-        // commandList.add(new SaveFamilyTree(view));
-        // commandList.add(new LoadFamilyTree(view));
+        commandsList.add(new PrintRegistry(view));
+        commandsList.add(new AddHumanFriendsMember(view));
+        commandsList.add(new DeleteHumanFriendsMember(view));
+        commandsList.add(new PrintCommands(view));
+        commandsList.add(new AddCommand(view));
+        commandsList.add(new DeleteCommand(view));
+        commandsList.add(new SortByBirthdate(view));
+        commandsList.add(new CountByAnimalType(view));
         commandsList.add(new Exit(view));
     }
 
     public String print(){
         StringBuilder sb = new StringBuilder();
-        sb.append("List of commands:\n");
+        sb.append("\nList of commands:\n");
         for (int i = 0; i < commandsList.size(); i++) {
             sb.append(i + 1)
                     .append(". ")

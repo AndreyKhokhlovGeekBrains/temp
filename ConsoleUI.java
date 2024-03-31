@@ -1,4 +1,7 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleUI implements View {
@@ -17,7 +20,7 @@ public class ConsoleUI implements View {
 
     @Override
     public void start() {
-        System.out.println("Hello!");
+        System.out.println("\nHello!");
         while (check){
             printMenu();
             scanMenu();
@@ -30,32 +33,34 @@ public class ConsoleUI implements View {
 
     private void scanMenu() {
         String choiceStr = scanner.nextLine();
-
-        boolean check = true;
         int maxValue = menu.size();
-        while(check){
+
+        while(true){
             try {
                 int choice = Integer.parseInt(choiceStr);
                 if (choice >= 1 && choice <= maxValue) {
                     menu.execute(choice);
-                    check = false;
+                    break;
                 }
             } catch (Exception e) {
                 System.out.println("Enter a valid number");
             }
-        } 
+        }
     }
 
+    @Override
     public void answer(String answer) {
-
+        System.out.println(answer);
     }
 
     public void addHumanFriendsMember() {
+        boolean check = true;
+        boolean exitConfirmed = false;
+        String animalTypeDescription = null;
+
         System.out.println("Enter name: ");
         String name = scanner.nextLine();
-        String animalTypeDescription = null;
-        boolean check = true;
-
+        
         while(check) {
             System.out.println("Enter animal type:");
             animalTypeDescription = scanner.nextLine();
@@ -68,54 +73,120 @@ public class ConsoleUI implements View {
 
         System.out.println("Enter birth date: ");
         LocalDate birthdate = dateBuilder.buildDate();
+        List<String> commands = new ArrayList<>();
 
-        presenter.addHumanFriendsMember(animalTypeDescription, name, birthdate);
+        while (!exitConfirmed) {
+            System.out.println("Would you like to enter a command? Y/N");
+            String prompt = scanner.nextLine().toLowerCase();
+                if(prompt.equals("y")) {
+                    System.out.println("Type a command: ");
+                    String newCommand = scanner.nextLine();
+                    commands.add(newCommand);
+                } else if (prompt.equals("n")) {
+                    exitConfirmed = true;
+                } else {
+                    System.out.println("Please, enter Y or N as a reply");
+                }
+        }
+
+        presenter.addHumanFriendsMember(animalTypeDescription, name, birthdate, commands);
         presenter.getHumanFriendsRegistryInfo();
     }
 
     public void exit() {
-        System.out.println("Would you like to save your changes? Y/N");
-        String prompt = scanner.nextLine().toLowerCase();
-        if(prompt.equals("y")){
-            save();
+        boolean exitConfirmed = false;
+        int maxRetries = 5;
+        int retries = 0;
+
+        while (!exitConfirmed) {
+            System.out.println("Would you like to save your changes? Y/N");
+            String prompt = scanner.nextLine().toLowerCase();
+                if(prompt.equals("y")){
+                    save();
+                    exitConfirmed = true;
+                } else if (prompt.equals("n")) {
+                    exitConfirmed = true;
+                } else {
+                    System.out.println("Please, enter Y or N as a reply");
+                    retries++;
+                    if (retries > maxRetries) {
+                        System.out.println("Maximum retries reached. Exiting without saving.");
+                        exitConfirmed = true;
+                    }
+                }
         }
+        
         System.out.println("Bye-bye");
         check = false;
     }
 
-    
-
     public void deleteHumanFriendsMember() {
-
-    };
+        System.out.println("Enter an id for the animal to delete: ");
+        String selectedChoice = scanner.nextLine();
+        int animalId = Integer.parseInt(selectedChoice);
+        presenter.deleteMember(animalId);
+    }
 
     public void printCommands() {
-
-    };
+        System.out.println("Enter an id for the animal:");
+        String selectedChoice = scanner.nextLine();
+        int animalId = Integer.parseInt(selectedChoice);
+        presenter.printCommands(animalId);
+    }
 
     public void addNewCommand() {
-
-    };
+        System.out.println("Enter an id for the animal:");
+        String selectedChoice = scanner.nextLine();
+        int animalId = Integer.parseInt(selectedChoice);
+        System.out.println("Enter a command to add:");
+        String command = scanner.nextLine();
+        presenter.addCommand(animalId, command);
+    }
 
     public void deleteCommand() {
+        System.out.println("Enter an id for the animal:");
+        String selectedChoice = scanner.nextLine();
+        int animalId = Integer.parseInt(selectedChoice);
 
-    };
+        HumanFriendsMember selectedMember = null;
+        HumanFriends<HumanFriendsMember> humanFriendsRegistry = presenter.getHumanFriendsRegistry();
+        Iterator<HumanFriendsMember> iterator = humanFriendsRegistry.iterator();
+            while (iterator.hasNext()) {
+                HumanFriendsMember member = iterator.next();
+                if(member.getId() == animalId) {
+                    selectedMember = member;
+                    break;
+                }
+            }
+        answer(selectedMember.getCommands());
+        System.out.println("Select an id for the command to delete: ");
+        selectedChoice = scanner.nextLine();
+        int selectedCommandId = Integer.parseInt(selectedChoice);
+        presenter.delecteCommand(selectedMember, selectedCommandId);
+    }
 
-    public void printNumberOfAnimalsByType(String animalType) {
-
-    };
+    public void countByAnimalType() {
+        Animals listOfAnimals = new Animals();
+        String selectedAnimalType;
+        System.out.println(listOfAnimals.printAnimalTypes());
+        System.out.println("Select an animal id to count: ");
+        String selectedChoice = scanner.nextLine();
+        int animalId = Integer.parseInt(selectedChoice);
+        selectedAnimalType = listOfAnimals.getDescriptionByID(animalId);
+        presenter.countByAnimalType(selectedAnimalType);
+    }
 
     public void sortByBirthdate() {
-
-    };
+        presenter.sortByBirthdate();
+    }
 
     public void save() {
         presenter.save();
-    };
+    }
 
-    public void loadHumanFriends() {
-
-    };
+    public void printRegistry() {
+        presenter.getHumanFriendsRegistryInfo();
+    }
 
 
 }

@@ -1,5 +1,5 @@
-public class addHumanFriendsMember extends Command{
-    public addHumanFriendsMember(View view) {
+public class AddHumanFriendsMember extends Command{
+    public AddHumanFriendsMember(View view) {
         super("Add a human friends member", view);
     }
 

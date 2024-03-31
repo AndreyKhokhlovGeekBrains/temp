@@ -26,7 +26,7 @@ public class HumanFriendsMemberBuilder {
         id = maxID + 1;
     }
 
-    public HumanFriendsMember build (String animalTypeDescription, String name, LocalDate birthdate) {
+    public HumanFriendsMember build (String animalTypeDescription, String name, LocalDate birthdate, List<String> commands) {
         String petType;
         Pets pets = new Pets();
         PackAnimals packAnimals = new PackAnimals();
@@ -43,6 +43,7 @@ public class HumanFriendsMemberBuilder {
             animalTypeId = getAnimalTypeId(animalTypeDescription);
             animalId = animals.getIdByDescription(petType);
             animalDescription = animals.getDescriptionByID(animalId);
+            this.commands = commands;
             
             return new HumanFriendsMember(id++, animalTypeId, animalTypeDescription, animalId, animalDescription, name, birthdate, commands);
         } else {
