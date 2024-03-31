@@ -1,6 +1,13 @@
+package model;
 import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
+
+import model.member.HumanFriendsMember;
+import model.registry.HumanFriends;
+import model.registry.HumanFriendsMemberBuilder;
+import model.writer.FileHandler;
+import model.writer.Writable;
 
 public class Service {
 

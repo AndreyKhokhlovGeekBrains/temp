@@ -1,3 +1,4 @@
+package model;
 // Dogs, Cats, Hamsters
 
 import java.util.HashMap;

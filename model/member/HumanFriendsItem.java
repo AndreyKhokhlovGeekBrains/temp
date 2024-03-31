@@ -1,3 +1,4 @@
+package model.member;
 import java.time.LocalDate;
 import java.time.Period;
 

@@ -1,3 +1,6 @@
+package view.commands;
+import view.View;
+
 public class AddCommand extends Command {
 
     public AddCommand(View view) {
@@ -8,5 +11,4 @@ public class AddCommand extends Command {
     public void execute() {
         getView().addNewCommand();
     }
-
 }

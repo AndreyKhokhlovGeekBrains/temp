@@ -1,3 +1,5 @@
+package view;
+
 public interface View {
     void start();
     void answer(String answer);
@@ -9,5 +11,5 @@ public interface View {
     void deleteCommand();
     void sortByBirthdate();
     void countByAnimalType();
-    void exit();
+    void exit(); 
 }

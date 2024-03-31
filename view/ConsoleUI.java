@@ -1,8 +1,15 @@
+package view;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+
+import model.Animals;
+import model.member.HumanFriendsMember;
+import model.registry.DateBuilder;
+import model.registry.HumanFriends;
+import presenter.Presenter;
 
 public class ConsoleUI implements View {
     private Scanner scanner;

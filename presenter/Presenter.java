@@ -1,6 +1,12 @@
+package presenter;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
+
+import model.Service;
+import model.member.HumanFriendsMember;
+import model.registry.HumanFriends;
+import view.View;
 
 public class Presenter {
     private View view;

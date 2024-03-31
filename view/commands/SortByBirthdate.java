@@ -1,3 +1,6 @@
+package view.commands;
+import view.View;
+
 public class SortByBirthdate extends Command {
 
     public SortByBirthdate(View view) {
@@ -8,5 +11,4 @@ public class SortByBirthdate extends Command {
     public void execute(){
         getView().sortByBirthdate();
     }
-
 }

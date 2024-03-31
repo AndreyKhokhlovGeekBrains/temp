@@ -1,3 +1,6 @@
+package view.commands;
+import view.View;
+
 public class CountByAnimalType extends Command {
 
     public CountByAnimalType(View view) {
@@ -8,5 +11,4 @@ public class CountByAnimalType extends Command {
     public void execute() {
         getView().countByAnimalType();
     }
-
 }

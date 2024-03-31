@@ -1,5 +1,17 @@
+package view;
 import java.util.ArrayList;
 import java.util.List;
+
+import view.commands.AddCommand;
+import view.commands.AddHumanFriendsMember;
+import view.commands.Command;
+import view.commands.CountByAnimalType;
+import view.commands.DeleteCommand;
+import view.commands.DeleteHumanFriendsMember;
+import view.commands.Exit;
+import view.commands.PrintCommands;
+import view.commands.PrintRegistry;
+import view.commands.SortByBirthdate;
 
 public class MainMenu {
     private List<Command> commandsList;

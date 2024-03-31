@@ -1,5 +1,8 @@
+package model.registry;
 import java.util.Iterator;
 import java.util.List;
+
+import model.member.HumanFriendsItem;
 
 public class HumanFriendsMemberIterator<HF extends HumanFriendsItem> implements Iterator<HF> {
     private int index;

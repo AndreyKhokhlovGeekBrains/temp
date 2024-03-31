@@ -1,3 +1,6 @@
+package view.commands;
+import view.View;
+
 public abstract class Command {
     private String description;
     private View view;

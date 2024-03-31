@@ -1,8 +1,11 @@
+package model.writer;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import model.registry.HumanFriends;
 
 public class FileHandler implements Writable{
     private String filePath = "C:\\Users\\khokh\\Desktop\\Итоговая контрольная\\test\\HumanFriends.txt";

@@ -1,3 +1,6 @@
+package view.commands;
+import view.View;
+
 public class PrintCommands extends Command{
 
     public PrintCommands(View view) {
@@ -8,5 +11,4 @@ public class PrintCommands extends Command{
     public void execute() {
         getView().printCommands();
     }
-
 }

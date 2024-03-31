@@ -1,3 +1,6 @@
+package view.commands;
+import view.View;
+
 public class DeleteCommand extends Command {
 
     public DeleteCommand (View view) {
@@ -8,5 +11,4 @@ public class DeleteCommand extends Command {
     public void execute() {
         getView().deleteCommand();
     }
-
 }

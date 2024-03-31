@@ -1,7 +1,10 @@
+package model.registry;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import model.member.HumanFriendsItem;
 
 public class HumanFriends<HF extends HumanFriendsItem> implements Serializable, Iterable<HF> {
     private List<HF> humanFriends;

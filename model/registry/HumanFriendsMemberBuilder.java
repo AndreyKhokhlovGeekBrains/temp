@@ -1,10 +1,15 @@
+package model.registry;
 // HumanFriendsMember(long id, long petID, String name, LocalDate birthdate, List<String> commands)
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import model.Animals;
+import model.PackAnimals;
+import model.Pets;
+import model.member.HumanFriendsItem;
+import model.member.HumanFriendsMember;
 
 public class HumanFriendsMemberBuilder {
     private Integer id = 1;
